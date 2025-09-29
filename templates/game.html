@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Game{% endblock %}
+
+{% block content %}
+
+<!-- 🔢 Problem counter ABOVE the container -->
+<div style="text-align: center; font-size: 1.2em; margin-bottom: 5px;">
+    <span class="counter">{{ current_index }} / {{ total }}</span>
+</div>
+
+<div class="game-container">
+    <!-- 🔝 Top row: Timer (center), Abort button (right inside container) -->
+    <div class="top-row">
+        <span id="timer">0:00</span>
+        <form method="POST" style="margin: 0; position: absolute; top: 15px; right: 15px;">
+            <button type="submit" name="abort" class="abort-btn">Abort</button>
+        </form>
+    </div>
+
+    <!-- Math problem -->
+    <div class="problem">
+        <div class="math-vertical">
+            <div class="row">
+                <span class="op"></span>
+                <span class="number">{{ a }}</span>
+            </div>
+            <div class="row">
+                <span class="op">{{ c }}</span>
+                <span class="number">{{ b }}</span>
+            </div>
+            <div class="bar"></div>
+            <form method="POST">
+            <div class="row">
+                <span class="op"></span>
+                <input 
+                    type="text" 
+                    id="answerInput" 
+                    class="number"
+                    name="d" 
+                    autocomplete="off" 
+                    inputmode="numeric" 
+                    required
+                >
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🔢 Number Pad inside its own container -->
+    <div class="numpad-container">
+        <div class="number-pad">
+            {% for i in range(1, 10) %}
+                <button type="button" class="num-btn">{{ i }}</button>
+            {% endfor %}
+            <div></div>
+            <button type="button" class="num-btn">0</button>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 🧠 Scripts -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("answerInput");
+    const correctAnswer = "{{ correct_answer|string }}";
+    const maxDigits = 16;
+
+    // Always keep focus
+    input.focus();
+    document.addEventListener("click", () => input.focus());
+
+    // Auto-submit when answer is correct
+    input.addEventListener("input", () => {
+        if (input.value.length > maxDigits) {
+            input.value = input.value.slice(0, maxDigits);
+        }
+        if (input.value.trim() == correctAnswer) {
+            input.form.submit();
+        }
+    });
+
+    // Numpad insert
+    document.querySelectorAll(".num-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            input.value += btn.textContent;
+            input.dispatchEvent(new Event("input"));
+        });
+    });
+
+    // Timer
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        let mins = Math.floor(seconds / 60);
+        let secs = seconds % 60;
+        document.getElementById("timer").textContent =
+            `${mins}:${secs < 10 ? "0" + secs : secs}`;
+    }, 1000);
+});
+</script>
+
+
+
+{% endblock %}

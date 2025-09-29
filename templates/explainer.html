@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Hack Explanation{% endblock %}
+
+{% block content %}
+<div class="explainer-container">
+    <!-- Title -->
+    <h1>📖 Hack Explanation</h1>
+
+    <!-- Explanation text -->
+    <div class="explainer-text">
+        <p>{{ explanation }}</p>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="explainer-actions">
+        <form action="{{ url_for('practice.start_practice', hack_id=hack_id) }}" method="get" style="display:inline;">
+            <button type="submit" class="practice-btn">Practice</button>
+        </form>
+        <a href="{{ url_for('hacks') }}" class="back-link">⬅ Back to Hacks</a>
+    </div>
+</div>
+{% endblock %}

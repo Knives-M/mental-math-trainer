@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Hacks{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 20px;">📘 Math Hacks</h1>
+<p style="margin-bottom: 30px;">Click a hack to learn more:</p>
+
+<div class="hacks-grid">
+    <!-- Addition -->
+    <div class="hack-column addition">
+        <h2>➕ Addition</h2>
+        <ul>
+            <li><a href="{{ url_for('explainer', hack_id='add2digit') }}">Addition of 2-digit numbers</a></li>
+            <li><a href="{{ url_for('explainer', hack_id='add3digit') }}">Addition of 3-digit numbers</a></li>
+        </ul>
+    </div>
+
+    <!-- Subtraction -->
+    <div class="hack-column subtraction">
+        <h2>➖ Subtraction</h2>
+        <ul>
+            <li><a href="{{ url_for('explainer', hack_id='sub2digit') }}">Subtraction of 2-digit numbers</a></li>
+            <li><a href="{{ url_for('explainer', hack_id='sub2digit_comp') }}">Subtraction (compensation strategy)</a></li>
+            <li><a href="{{ url_for('explainer', hack_id='sub3digit') }}">Subtraction of 3-digit numbers</a></li>
+        </ul>
+    </div>
+
+    <!-- Multiplication -->
+    <div class="hack-column multiplication">
+        <h2>✖ Multiplication</h2>
+        <ul>
+            <li><a href="{{ url_for('explainer', hack_id='mult11') }}">Multiplication of 2-digit numbers by 11</a></li>
+            <li><a href="{{ url_for('explainer', hack_id='mult2x1') }}">Multiplication of 2-digit numbers by 1-digit</a></li>
+            <li><a href="{{ url_for('explainer', hack_id='mult5') }}">Multiplication by 5</a></li>
+        </ul>
+    </div>
+
+    <!-- Division -->
+    <div class="hack-column division">
+        <h2>➗ Division</h2>
+        <ul>
+            <li><a href="{{ url_for('explainer', hack_id='div5') }}">Division by 5</a></li>
+        </ul>
+    </div>
+</div>
+
+<br>
+<a href="{{ url_for('setup') }}">⬅ Back to Setup</a>
+{% endblock %}

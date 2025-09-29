@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Setup{% endblock %}
+
+{% block content %}
+
+    <!-- 🏷️ Title Container -->
+    <div class="setup-title">
+        <h1>Mental Math Trainer</h1>
+    </div>
+
+    <!-- 🎛️ Form Container -->
+    <div class="setup-form">
+        <form method="post" id="setup-form">
+            <!-- Row: a_digits, operation, b_digits -->
+            <div class="setup-row">
+                <select name="digits_a" required>
+                    {% for i in range(1, 9) %}
+                        <option value="{{ i }}">{{ i }} digit{% if i > 1 %}s{% endif %}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="c" required>
+                    <option value="+">+</option>
+                    <option value="-">−</option>
+                    <option value="*">×</option>
+                    <option value="/">÷</option>
+                </select>
+
+                <select name="digits_b" required>
+                    {% for i in range(1, 9) %}
+                        <option value="{{ i }}">{{ i }} digit{% if i > 1 %}s{% endif %}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Number of problems -->
+            <br>
+            <label for="problems">Number of problems:</label>
+            <input type="number" id="problems" name="n" min="1" max="1000" value="5" required>
+        </form>
+    </div>
+
+    <!-- ▶️ Start Button (below form) -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" form="setup-form" class="start-btn">Start Game</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Math Trainer{% endblock %}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SUSE+Mono&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+ <style>
+ html, body {
+      height: 100%;               /* full height for flex layout */
+      margin: 0;                  /* remove browser defaults */
+      display: flex;
+      flex-direction: column;     /* stack nav, main, footer */
+      font-family: 'Lexend', sans-serif;
+      background-color: #435058;
+      color: white;
+      text-align: center;
+    }
+
+  nav {
+    background-color: #08A045; /* ✅ solid background bar */
+    padding: 15px;             /* space inside the bar */
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+      main {
+      flex: 1;                    /* pushes footer to bottom */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;    /* optional: center content vertically */
+    }
+
+
+  .number, #answerInput {
+    font-family: 'SUSE Mono', monospace;
+  }
+</style>
+
+</head>
+<body>
+  <!-- Navigation bar -->
+  <nav>
+    <a href="{{ url_for('setup') }}">Home</a>
+    <a href="{{ url_for('hacks') }}">Hacks</a>
+  </nav>
+  <!-- Page content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Shared footer -->
+  <footer>
+    <p>📧 Contact: MKnives@proton.me </p>
+    <p class="watermark">© 2025 Knives – Mental Math Trainer</p>
+  </footer>
+</body>
+</html>
