@@ -1,6 +1,7 @@
 # Import necessary modules
-from flask import Flask, render_template, request, redirect, url_for, session, os
+from flask import Flask, render_template, request, redirect, url_for, session 
 from PracticeGames import practice_bp
+import os
 import random  # random number generation
 
 # ------------------- Flask App Setup -------------------
